@@ -10,17 +10,14 @@ class Challenge
 
   def call
     return 0 if @input.empty?
-    return 1 if @input.size == 1
 
-    max = @input.shift
-    counter = 1
-    @input.each do |item|
-      next if item < max
-      counter += 1 and next if item == max
-
-      max = item
-      counter = 1
-    end
-    counter
+    @input.each_with_object(height: 0, counter: 0) do |height, acc|
+      if height > acc[:height]
+        acc[:height] = height
+        acc[:counter] = 1
+      elsif height == acc[:height]
+        acc[:counter] += 1
+      end
+    end[:counter]
   end
 end
