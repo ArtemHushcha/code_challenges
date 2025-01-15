@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+require File.join(File.dirname(__FILE__), 'challenge')
+require 'test/unit'
+
+# This is a class with test cases
+class ChallengeTest < Test::Unit::TestCase
+  def test_extra_close_bracket
+    input = '(coder)(byte))'
+    should_be_result = 0
+    actual_result = Challenge.new(input).call
+    assert_equal(should_be_result, actual_result)
+  end
+
+  def test_extra_open_bracket
+    input = '((coder)(byte)'
+    should_be_result = 0
+    actual_result = Challenge.new(input).call
+    assert_equal(should_be_result, actual_result)
+  end
+
+  def test_happy_path
+    input = '(c(oder)) b(yte)'
+    should_be_result = 1
+    actual_result = Challenge.new(input).call
+    assert_equal(should_be_result, actual_result)
+  end
+
+  def test_empty_input
+    input = ''
+    should_be_result = 1
+    actual_result = Challenge.new(input).call
+    assert_equal(should_be_result, actual_result)
+  end
+
+  def test_without_brackets
+    input = 'coderbyte'
+    should_be_result = 1
+    actual_result = Challenge.new(input).call
+    assert_equal(should_be_result, actual_result)
+  end
+end
