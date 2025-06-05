@@ -9,10 +9,12 @@ class Challenge
   end
 
   def call
-    chars = @input.chars
+    open_brackets_count, close_brackets_count = 0, 0
 
-    open_brackets_count = chars.count('(')
-    close_brackets_count = chars.count(')')
+    @input.chars.each do |char|
+      open_brackets_count += 1 and next if char == '('
+      close_brackets_count += 1 and next if char == ')'
+    end
 
     open_brackets_count == close_brackets_count ? 1 : 0
   end
