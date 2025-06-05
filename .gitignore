@@ -13,6 +13,9 @@
 # Used by dotenv library to load environment variables.
 # .env
 
+# OS specific.
+.DS_Store
+
 # Ignore Byebug command history file.
 .byebug_history
 

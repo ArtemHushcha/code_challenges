@@ -8,7 +8,5 @@ class Challenge
     @input = input
   end
 
-  def call
-    
-  end
+  def call; end
 end
