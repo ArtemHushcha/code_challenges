@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.join(File.dirname(__FILE__), 'challenge')
+require_relative 'challenge'
 require 'test/unit'
 
 # This is a class with test cases
