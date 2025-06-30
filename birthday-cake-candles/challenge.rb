@@ -8,7 +8,26 @@ class Challenge
     @input = input
   end
 
-  def call
+  def call(method = :optimized)
+    send(method)
+  end
+
+  private
+
+  def default
     @input.count @input.max
+  end
+
+  def optimized
+    return 0 if @input.empty?
+
+    @input.each_with_object(height: 0, counter: 0) do |height, acc|
+      if height > acc[:height]
+        acc[:height] = height
+        acc[:counter] = 1
+      elsif height == acc[:height]
+        acc[:counter] += 1
+      end
+    end[:counter]
   end
 end
