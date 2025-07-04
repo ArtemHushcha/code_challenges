@@ -45,13 +45,13 @@ class ChallengeTest < Test::Unit::TestCase
     input = Array.new(1_000_000) { rand(1...9) }.push 10
     should_be_result = 1
 
-    Benchmark.bm do |benchmark|
-      benchmark.report('optimized') do
-        actual_result = Challenge.new(input).call(:optimized)
-        assert_equal(should_be_result, actual_result)
-      end
+    Benchmark.bmbm do |benchmark|
       benchmark.report('default') do
         actual_result = Challenge.new(input).call(:default)
+        assert_equal(should_be_result, actual_result)
+      end
+      benchmark.report('optimized') do
+        actual_result = Challenge.new(input).call(:optimized)
         assert_equal(should_be_result, actual_result)
       end
     end

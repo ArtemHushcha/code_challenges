@@ -8,7 +8,7 @@ class Challenge
     @input = input
   end
 
-  def call(method = :optimized)
+  def call(method = :default)
     send(method)
   end
 
