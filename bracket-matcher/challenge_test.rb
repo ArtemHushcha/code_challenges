@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'challenge'
+require 'benchmark'
 require 'test/unit'
 
 # This is a class with test cases
@@ -73,5 +74,21 @@ class ChallengeTest < Test::Unit::TestCase
     should_be_result = 1
     actual_result = Challenge.new(input).call
     assert_equal(should_be_result, actual_result)
+  end
+
+  def test_benchmarking
+    input = "#{rand(36**1000).to_s(36)}()"
+    should_be_result = 1
+
+    Benchmark.bmbm do |benchmark|
+      benchmark.report('default') do
+        actual_result = Challenge.new(input).call(:default)
+        assert_equal(should_be_result, actual_result)
+      end
+      benchmark.report('optimized') do
+        actual_result = Challenge.new(input).call(:optimized)
+        assert_equal(should_be_result, actual_result)
+      end
+    end
   end
 end
