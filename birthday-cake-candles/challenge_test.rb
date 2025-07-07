@@ -41,6 +41,7 @@ class ChallengeTest < Test::Unit::TestCase
     assert_equal(should_be_result, actual_result)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def test_benchmarking
     input = Array.new(1_000_000) { rand(1...9) }.push 10
     should_be_result = 1
@@ -56,4 +57,5 @@ class ChallengeTest < Test::Unit::TestCase
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end
